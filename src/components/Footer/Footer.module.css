@@ -1,0 +1,16 @@
+@font-face {
+    font-family: remachine;
+    src: url('../../assets/fonts/RemachineScript_Personal_Use.ttf');
+}
+
+footer {
+    margin-top: 5%;
+    font-size: .7rem;
+    align-self: self-end;
+}
+
+footer strong {
+    color: #963ad4;
+    font-size: 1.7rem;
+    font-family: remachine;
+}

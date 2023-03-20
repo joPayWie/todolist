@@ -1,0 +1,18 @@
+#root {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 2rem;
+  text-align: center;
+}
+
+@font-face {
+  font-family: regular;
+  src: url('../src/assets/fonts/Regular.ttf');
+}
+
+h1 {
+  font-family: regular;
+  font-size: 5rem !important;
+  line-height: 1.1;
+  color: #C2C6DF;
+}
