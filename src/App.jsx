@@ -6,7 +6,7 @@ import { Header } from "./components/Header/Header"
 import { List } from "./components/List/List";
 import { Footer } from "./components/Footer/Footer";
 
-import { Box, Flex, HStack, VStack, Input, Select, Button } from "@chakra-ui/react";
+import { Box, VStack } from "@chakra-ui/react";
 
 import "./App.css";
 
@@ -17,12 +17,15 @@ function App() {
   );
 
   const addNewTask = (newTask) => {
-    const newTaskArray = [
-      ...tasks,
-      { id: self.crypto.randomUUID(), task: newTask, status: "pending" },
-    ]
-    setTasks(newTaskArray);
-    localStorage.setItem("tasks", JSON.stringify(newTaskArray));
+    if (newTask !== '') {
+      const newTaskArray = [
+        ...tasks,
+        { id: self.crypto.randomUUID(), task: newTask, status: "pending" },
+      ]
+      setTasks(newTaskArray);
+      setLocalStorage("tasks", newTaskArray);
+    }
+    
   };
 
   return (
