@@ -8,10 +8,9 @@ import App from './App'
 import './index.css'
 
 ReactDOM.createRoot(document.getElementById('root')).render(
-  <ChakraProvider>
     <React.StrictMode>
-      <App />
+        <ChakraProvider>
+          <App />
+        </ChakraProvider>
     </React.StrictMode>
-  </ChakraProvider>,
-
 )

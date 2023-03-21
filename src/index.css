@@ -29,6 +29,7 @@ body {
   min-height: 100vh;
   background-color: #231972 !important;
   color: white !important;
+  font-family: 'Montserrat', sans-serif !important;
 }
 
 button {
