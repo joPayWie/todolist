@@ -1,8 +1,8 @@
-import './Footer.module.css' 
+import styles from './Footer.module.css' 
 
 export const Footer = () => {
   return (
-    <footer style={{ height: "75%" }}>
+    <footer>
         <span> Build with &#128154; by 
             <strong> JoPay</strong> 
         </span>

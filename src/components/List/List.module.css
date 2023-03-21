@@ -1,0 +1,15 @@
+.list_bg {
+    background-image: url('../../../public/notebook.jpg');
+    min-height: fit-content;
+    background-repeat: repeat-y;
+    color: black;
+    margin-top: 3%;
+    width: 45%;
+    border-radius: 10px;
+}
+
+@media (max-width: 450px) {
+    .list_bg {
+        width: 80%;
+    }
+}

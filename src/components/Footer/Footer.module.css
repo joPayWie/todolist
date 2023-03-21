@@ -4,9 +4,9 @@
 }
 
 footer {
-    margin-top: 5%;
     font-size: .7rem;
     align-self: self-end;
+    height: 75%;
 }
 
 footer strong {

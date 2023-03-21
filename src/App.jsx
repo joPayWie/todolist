@@ -6,7 +6,7 @@ import { Header } from "./components/Header/Header"
 import { List } from "./components/List/List";
 import { Footer } from "./components/Footer/Footer";
 
-import { Box, VStack } from "@chakra-ui/react";
+import { Flex, VStack } from "@chakra-ui/react";
 
 import "./App.css";
 
@@ -31,10 +31,10 @@ function App() {
   return (
     <div className="App">
       <VStack spacing="10%">
-        <Box h="90%">
+        <Flex h="90%" direction="column" align='center'>
           <Header addNewTask={addNewTask}/>
           <List tasks={tasks} />
-        </Box>
+        </Flex>
         <Footer />
       </VStack>
     </div>
