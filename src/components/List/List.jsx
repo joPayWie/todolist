@@ -1,13 +1,34 @@
-import { Flex } from '@chakra-ui/react'
+import { setLocalStorage } from "../../utilities/LocalStorage";
+import { getLocalStorage } from "../../utilities/LocalStorage";
 
-import styles from './List.module.css' 
+import { Task } from "../Task/Task";
 
+import { Flex } from "@chakra-ui/react";
 
-export const List = ({  }) => {
-    return (
-        <div className={styles.list_bg}>
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Quae sunt unde eum ad cum voluptates vitae error optio sed iure sapiente id sint voluptate harum accusamus non ratione pariatur, dolor magni voluptas voluptatibus impedit aliquid. Debitis architecto ratione qui adipisci aliquam doloribus nihil modi. Eius quibusdam aut obcaecati aliquam sunt animi doloribus temporibus qui dignissimos molestiae dolorem possimus laboriosam sapiente perspiciatis quaerat iste maiores rem, accusamus voluptatum sint placeat similique quisquam odio? Unde, magni eveniet dolore dicta harum saepe repellendus eum aliquam expedita ullam a commodi nobis ratione iusto nam officiis dignissimos officia nisi dolores! Aliquam minima totam tempora provident.
-            Lorem ipsum dolor, sit amet consectetur adipisicing elit. Autem laborum culpa, laudantium adipisci saepe eveniet distinctio quidem aperiam voluptatem temporibus, cupiditate minus veritatis voluptate. Assumenda vero tempora sed aspernatur maxime similique inventore beatae pariatur possimus quidem, esse eveniet eaque, neque voluptates quos itaque fuga nihil quas sit odio! Sed saepe debitis corrupti a dicta repudiandae architecto numquam et sunt quasi, eaque nihil vel iure sint autem hic repellat maxime ut nam aperiam molestiae pariatur? Cum possimus, quaerat beatae sapiente veniam placeat deserunt aspernatur illum voluptas ducimus fugit voluptatum, error ipsam quisquam quidem consequuntur rerum! Nesciunt error dignissimos reprehenderit est facere.
-        </div>
-    )
-}
+export const List = ({ tasks, deleteTask }) => {
+
+  return (
+    <Flex
+      bgImage="url('/notebook.jpg')"
+      bgRepeat="repeat-y"
+      mt="3%"
+      w='100%'
+      color="black"
+      borderRadius="10px"
+      p="1%"
+      justify='center'
+      direction='column'>
+      <h1 className="text-6xl">Tasks:</h1>  
+      {tasks.length === 0 ? <h2 className="text-xl font-bold p-8">Oops! It seems that there are no tasks yet. Please add a task.</h2> 
+       : tasks.map((task) => (
+        <Task
+          key={task.id}
+          taskName={task.taskName}
+          taskStatus={task.taskStatus}
+          taskId={task.id}
+          deleteTask={deleteTask}
+        ></Task>))
+      }
+    </Flex>
+  );
+};

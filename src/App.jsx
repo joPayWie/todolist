@@ -20,20 +20,23 @@ function App() {
     if (newTask !== '') {
       const newTaskArray = [
         ...tasks,
-        { id: self.crypto.randomUUID(), task: newTask, status: "pending" },
+        { id: self.crypto.randomUUID(), taskName: newTask, taskStatus: false },
       ]
       setTasks(newTaskArray);
-      setLocalStorage("tasks", newTaskArray);
+      setLocalStorage("tasks", newTaskArray); 
     }
-    
   };
+
+  const deleteTask = (id) => {
+    console.log(id)
+  }
 
   return (
     <div className="App">
-      <VStack spacing="10%">
-        <Flex h="90%" direction="column" align='center'>
+      <VStack spacing="3%">
+        <Flex h="90%" direction="column" align='center' p='3%'>
           <Header addNewTask={addNewTask}/>
-          <List tasks={tasks} />
+          <List tasks={tasks} deleteTask={deleteTask}/>
         </Flex>
         <Footer />
       </VStack>

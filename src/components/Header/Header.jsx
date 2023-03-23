@@ -9,10 +9,11 @@ export const Header = ({ addNewTask }) => {
   const handleSubmit = (e) => {
     e.preventDefault();
     addNewTask(newTask);
+    setNewTask("")
   };
 
   return (
-    <Flex direction="column" gap="20px" alignItems="center">
+    <Flex direction="column" gap="20px" alignItems="center" mb='2%'>
       <Flex gap="10px" align="center">
         <FcTodoList
           style={{
@@ -22,7 +23,7 @@ export const Header = ({ addNewTask }) => {
             padding: "2px",
           }}
         />
-        <h1>myToDoList</h1>
+        <h1 className='text-[5rem] leading-4 text-[#C2C6DF]'>myToDoList</h1>
       </Flex>
       <Flex gap="10px">
         <form onSubmit={handleSubmit} autoComplete="off">
@@ -36,6 +37,7 @@ export const Header = ({ addNewTask }) => {
               bg="white"
               color="#6C65C2"
               size="lg"
+              maxLength='25'
               onChange={(e) => setNewTask(e.target.value)}
             />
             <Button type="submit" colorScheme='purple' bg="#872bc5" color="white">
