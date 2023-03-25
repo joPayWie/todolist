@@ -6,7 +6,7 @@ import { Header } from "./components/Header/Header"
 import { List } from "./components/List/List";
 import { Footer } from "./components/Footer/Footer";
 
-import { filter, Flex, VStack } from "@chakra-ui/react";
+import { Flex, VStack } from "@chakra-ui/react";
 
 import "./App.css";
 
@@ -33,13 +33,17 @@ function App() {
     setTasks(filteredTaskArray)
     setLocalStorage('tasks', filteredTaskArray)
   }
+  
+  const changeTaskStatus = (id) => {
+    console.log(id)
+  }
 
   return (
     <div className="App">
       <VStack spacing="3%">
         <Flex h="90%" direction="column" align='center' p='3%'>
           <Header addNewTask={addNewTask}/>
-          <List tasks={tasks} deleteTask={deleteTask}/>
+          <List tasks={tasks} deleteTask={deleteTask} changeTaskStatus={changeTaskStatus} />
         </Flex>
         <Footer />
       </VStack>

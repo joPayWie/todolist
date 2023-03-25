@@ -14,7 +14,7 @@ export const Header = ({ addNewTask }) => {
 
   return (
     <Flex direction="column" gap="20px" alignItems="center" mb='2%'>
-      <Flex gap="10px" align="center">
+      <Flex gap="10px" align="center" mb='3%'>
         <FcTodoList
           style={{
             fontSize: "3rem",
