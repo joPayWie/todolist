@@ -1,19 +1,19 @@
 // let uuid = self.crypto.randomUUID();
 
 import { useState } from "react";
-import { setLocalStorage } from "./utilities/LocalStorage"
+import { setLocalStorage, getLocalStorage } from "./utilities/LocalStorage"
 import { Header } from "./components/Header/Header"
 import { List } from "./components/List/List";
 import { Footer } from "./components/Footer/Footer";
 
-import { Flex, VStack } from "@chakra-ui/react";
+import { filter, Flex, VStack } from "@chakra-ui/react";
 
 import "./App.css";
 
 function App() {
   
   const [tasks, setTasks] = useState(
-    JSON.parse(localStorage.getItem("tasks")) || []
+    getLocalStorage('tasks') || []
   );
 
   const addNewTask = (newTask) => {
@@ -28,7 +28,10 @@ function App() {
   };
 
   const deleteTask = (id) => {
-    console.log(id)
+    const currentTaskArray = getLocalStorage('tasks')
+    const filteredTaskArray = currentTaskArray.filter((task) => task.id !== id)
+    setTasks(filteredTaskArray)
+    setLocalStorage('tasks', filteredTaskArray)
   }
 
   return (
