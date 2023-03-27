@@ -68,7 +68,7 @@ export const Header = ({ addNewTask, setTasks }) => {
               onChange={(e) => handleChange(e.target.value)}
             >
               <option value="all">All</option>
-              <option value="completed">Completed</option>
+              <option value="complete">Complete</option>
               <option value="pending">Pending</option>
             </Select>
           </Flex>

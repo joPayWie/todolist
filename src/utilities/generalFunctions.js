@@ -1,13 +1,11 @@
 import { getLocalStorage } from "./LocalStorage"
 
-export const toggleBoolean = (status) => status ? false : true
-
 export const filterTasks = (selectValue) => {
     let taskArray = getLocalStorage('tasks')
     if (selectValue === '' || selectValue === 'all') {
         return taskArray
     }
-    if (selectValue === 'completed') {
+    if (selectValue === 'complete') {
         return taskArray.filter(task => task.taskStatus === true)
     }
     if (selectValue === 'pending') {

@@ -1,4 +1,3 @@
-import { toggleBoolean } from "../../utilities/generalFunctions";
 import { setLocalStorage } from "../../utilities/LocalStorage"
 
 import { Task } from "../Task/Task";
@@ -10,7 +9,7 @@ export const List = ({ tasks, deleteTask, setTasks }) => {
   const changeTaskStatus = (id) => {
     let changedArray = tasks.map((task) => {
       if (task.id === id) {
-        return { ...task, taskStatus: toggleBoolean(task.taskStatus) };
+        return { ...task, taskStatus: !task.taskStatus };
       }
       return task;
     });
