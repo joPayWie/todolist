@@ -1,16 +1,25 @@
 import { useState } from "react";
 
+import { filterTasks } from "../../utilities/generalFunctions";
+
 import { Flex, Input, Select, Button } from "@chakra-ui/react";
 import { FcTodoList } from "react-icons/fc";
 
 export const Header = ({ addNewTask }) => {
   const [newTask, setNewTask] = useState("");
+  const [selectValue, setSelectValue] = useState("")
 
   const handleSubmit = (e) => {
     e.preventDefault();
     addNewTask(newTask);
     setNewTask("")
   };
+
+  const handleChange = (e) => {
+    setSelectValue(e.target.value)
+    console.log(filterTasks(selectValue))
+    
+  }
 
   return (
     <Flex direction="column" gap="20px" alignItems="center" mb='2%'>
@@ -56,6 +65,8 @@ export const Header = ({ addNewTask }) => {
               color="#6C65C2"
               fontWeight="bold"
               size="lg"
+              value={selectValue}
+              onChange={(e) => handleChange(e)}
             >
               <option value="all">All</option>
               <option value="completed">Completed</option>

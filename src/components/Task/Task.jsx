@@ -8,6 +8,7 @@ export const Task = ({
   deleteTask,
   changeTaskStatus,
 }) => {
+
   return (
     <Flex w="100%" justify="space-between" align="center" p="1%">
       <span
@@ -22,7 +23,7 @@ export const Task = ({
           colorScheme="green"
           aria-label="Check"
           icon={<CheckIcon />}
-          onClick={changeTaskStatus(taskId)}
+          onClick={() => changeTaskStatus(taskId)}
         />
         <IconButton
           colorScheme="red"
