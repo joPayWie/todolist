@@ -1,13 +1,12 @@
-// import { setLocalStorage } from "../../utilities/LocalStorage";
-// import { getLocalStorage } from "../../utilities/LocalStorage";
-import { toggleBoolean, filterTasks } from "../../utilities/generalFunctions";
+import { toggleBoolean } from "../../utilities/generalFunctions";
+import { setLocalStorage } from "../../utilities/LocalStorage"
 
 import { Task } from "../Task/Task";
 
 import { Flex } from "@chakra-ui/react";
-import { setLocalStorage } from "../../utilities/LocalStorage";
 
 export const List = ({ tasks, deleteTask, setTasks }) => {
+
   const changeTaskStatus = (id) => {
     let changedArray = tasks.map((task) => {
       if (task.id === id) {
@@ -15,7 +14,6 @@ export const List = ({ tasks, deleteTask, setTasks }) => {
       }
       return task;
     });
-    console.log(changedArray);
     setTasks(changedArray);
     setLocalStorage("tasks", changedArray);
   };
@@ -38,7 +36,7 @@ export const List = ({ tasks, deleteTask, setTasks }) => {
       {tasks.length === 0 ? (
         <h2 className="text-xl font-bold max-w-fit text-slate-600">
           Oops! It seems that there are no tasks yet.<br></br> Please add a
-          task.
+          task or change the filter.
         </h2>
       ) : (
         tasks.map((task) => (
@@ -49,7 +47,7 @@ export const List = ({ tasks, deleteTask, setTasks }) => {
             taskId={task.id}
             deleteTask={deleteTask}
             changeTaskStatus={changeTaskStatus}
-          ></Task>
+          />
         ))
       )}
     </Flex>

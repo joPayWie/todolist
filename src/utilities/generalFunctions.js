@@ -8,9 +8,9 @@ export const filterTasks = (selectValue) => {
         return taskArray
     }
     if (selectValue === 'completed') {
-        return taskArray.filter(task => task.taskStatus === false)
+        return taskArray.filter(task => task.taskStatus === true)
     }
     if (selectValue === 'pending') {
-        return taskArray.filter(task => task.taskStatus === true)
+        return taskArray.filter(task => task.taskStatus === false)
     }
 }
