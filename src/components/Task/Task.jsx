@@ -1,3 +1,7 @@
+import React from "react";
+
+import { Form } from "../Form/Form";
+
 import {
   useDisclosure,
   Button,
@@ -9,8 +13,18 @@ import {
   AlertDialogHeader,
   AlertDialogContent,
   AlertDialogOverlay,
+  Popover,
+  PopoverTrigger,
+  PopoverContent,
+  PopoverHeader,
+  PopoverBody,
+  PopoverFooter,
+  PopoverArrow,
+  PopoverCloseButton,
+  PopoverAnchor,
 } from "@chakra-ui/react";
-import { DeleteIcon, CheckIcon } from "@chakra-ui/icons";
+
+import { DeleteIcon, CheckIcon, EditIcon } from "@chakra-ui/icons";
 
 export const Task = ({
   taskName,
@@ -19,53 +33,92 @@ export const Task = ({
   deleteTask,
   changeTaskStatus,
 }) => {
+  const { isOpen, onOpen, onClose } = useDisclosure();
 
-  const { isOpen, onOpen, onClose } = useDisclosure()
+  const {
+    isOpen: isOpenEditPopover,
+    onOpen: onOpenEditPopover,
+    onClose: onCloseEditPopover,
+  } = useDisclosure();
+
+  const firstFieldRef = React.useRef(null);
 
   return (
     <>
       <Flex w="100%" justify="space-between" align="center" p="1%">
         <span
           className={`text-xl font-bold ${
-            !taskStatus || `line-through text-slate-600`
-          }`}
+            taskName.length > 16 && `w-2/3 text-left`
+          } ${!taskStatus || `line-through text-slate-600`}`}
         >
           {taskName}
         </span>
-        <Flex w="26%" justify="space-between">
+        <Flex w="32.5%" justify="space-between">
           <IconButton
-            colorScheme={taskStatus ? 'blackAlpha' : 'green'}
+            colorScheme={taskStatus ? "blackAlpha" : "green"}
+            size="sm"
             aria-label="Check"
             icon={<CheckIcon />}
             onClick={() => changeTaskStatus(taskId)}
           />
+
+          <Popover
+            isOpen={isOpenEditPopover}
+            initialFocusRef={firstFieldRef}
+            onOpen={onOpenEditPopover}
+            onClose={onCloseEditPopover}
+            placement="right"
+            closeOnBlur={false}
+          >
+            <PopoverTrigger>
+              <IconButton
+                colorScheme="yellow"
+                size="sm"
+                aria-label="Edit"
+                icon={<EditIcon />}
+              />
+            </PopoverTrigger>
+            <PopoverContent p={5}>
+              <PopoverArrow />
+              <PopoverCloseButton />
+              <Form
+                firstFieldRef={firstFieldRef}
+                onCancel={onCloseEditPopover}
+                taskName={taskName}
+                taskId={taskId}
+              />
+            </PopoverContent>
+          </Popover>
+
           <IconButton
             colorScheme="red"
+            size="sm"
             aria-label="Delete"
             icon={<DeleteIcon />}
             onClick={onOpen}
           />
         </Flex>
       </Flex>
-      <AlertDialog
-        isOpen={isOpen}
-        onClose={onClose}
-      >
+      <AlertDialog isOpen={isOpen} onClose={onClose}>
         <AlertDialogOverlay>
           <AlertDialogContent>
-            <AlertDialogHeader fontSize='lg' fontWeight='bold' color='black'>
+            <AlertDialogHeader fontSize="lg" fontWeight="bold" color="black">
               Warning
             </AlertDialogHeader>
 
-            <AlertDialogBody color='black'>
+            <AlertDialogBody color="black">
               Are you sure? You can't undo this action afterwards.
             </AlertDialogBody>
 
             <AlertDialogFooter>
-              <Button colorScheme='blue' onClick={onClose}>
+              <Button colorScheme="blue" onClick={onClose}>
                 No, cancel
               </Button>
-              <Button colorScheme='red' onClick={() => deleteTask(taskId)} ml={3}>
+              <Button
+                colorScheme="red"
+                onClick={() => deleteTask(taskId)}
+                ml={3}
+              >
                 Yes, delete
               </Button>
             </AlertDialogFooter>

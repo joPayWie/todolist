@@ -25,7 +25,7 @@ export const List = ({ tasks, deleteTask, setTasks }) => {
       w="100%"
       color="black"
       borderRadius="10px"
-      p={{ base: "3%", lg: "2%" }}
+      p='2%'
       pt={{ base: "0px", lg: "0px" }}
       justify="center"
       direction="column"

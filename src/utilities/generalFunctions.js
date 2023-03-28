@@ -12,3 +12,7 @@ export const filterTasks = (selectValue) => {
         return taskArray.filter(task => task.taskStatus === false)
     }
 }
+
+export const editTaskName = () => {
+
+}
