@@ -33,7 +33,7 @@ function App() {
 
   return (
     <div className="App">
-      <VStack spacing="3%">
+      <VStack spacing='15%'>
         <Flex h="90%" direction="column" align="center" p="3%">
           <Header addNewTask={addNewTask} setTasks={setTasks} />
           <List tasks={tasks} deleteTask={deleteTask} setTasks={setTasks} />

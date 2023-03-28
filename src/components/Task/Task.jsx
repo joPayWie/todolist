@@ -34,7 +34,7 @@ export const Task = ({
         </span>
         <Flex w="26%" justify="space-between">
           <IconButton
-            colorScheme="green"
+            colorScheme={taskStatus ? 'blackAlpha' : 'green'}
             aria-label="Check"
             icon={<CheckIcon />}
             onClick={() => changeTaskStatus(taskId)}
@@ -63,10 +63,10 @@ export const Task = ({
 
             <AlertDialogFooter>
               <Button colorScheme='blue' onClick={onClose}>
-                Cancel
+                No, cancel
               </Button>
               <Button colorScheme='red' onClick={() => deleteTask(taskId)} ml={3}>
-                Delete
+                Yes, delete
               </Button>
             </AlertDialogFooter>
           </AlertDialogContent>
