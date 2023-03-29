@@ -17,6 +17,17 @@ export const List = ({ tasks, deleteTask, setTasks }) => {
     setLocalStorage("tasks", changedArray);
   };
 
+  const editTaskName = (id, value) => {
+    let changedArray = tasks.map((task) => {
+      if (task.id === id) {
+        return { ...task, taskName: value };
+      }
+      return task;
+    });
+    setTasks(changedArray);
+    setLocalStorage("tasks", changedArray);
+  }
+
   return (
     <Flex
       bgImage="url('/notebook.jpg')"
@@ -46,6 +57,7 @@ export const List = ({ tasks, deleteTask, setTasks }) => {
             taskId={task.id}
             deleteTask={deleteTask}
             changeTaskStatus={changeTaskStatus}
+            editTaskName={editTaskName}
           />
         ))
       )}

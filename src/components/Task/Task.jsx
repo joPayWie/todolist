@@ -16,12 +16,8 @@ import {
   Popover,
   PopoverTrigger,
   PopoverContent,
-  PopoverHeader,
-  PopoverBody,
-  PopoverFooter,
   PopoverArrow,
-  PopoverCloseButton,
-  PopoverAnchor,
+  PopoverCloseButton
 } from "@chakra-ui/react";
 
 import { DeleteIcon, CheckIcon, EditIcon } from "@chakra-ui/icons";
@@ -32,16 +28,15 @@ export const Task = ({
   taskId,
   deleteTask,
   changeTaskStatus,
+  editTaskName
 }) => {
   const { isOpen, onOpen, onClose } = useDisclosure();
 
   const {
     isOpen: isOpenEditPopover,
     onOpen: onOpenEditPopover,
-    onClose: onCloseEditPopover,
+    onClose: onCloseEditPopover
   } = useDisclosure();
-
-  const firstFieldRef = React.useRef(null);
 
   return (
     <>
@@ -64,7 +59,6 @@ export const Task = ({
 
           <Popover
             isOpen={isOpenEditPopover}
-            initialFocusRef={firstFieldRef}
             onOpen={onOpenEditPopover}
             onClose={onCloseEditPopover}
             placement="right"
@@ -82,10 +76,10 @@ export const Task = ({
               <PopoverArrow />
               <PopoverCloseButton />
               <Form
-                firstFieldRef={firstFieldRef}
                 onCancel={onCloseEditPopover}
                 taskName={taskName}
                 taskId={taskId}
+                editTaskName={editTaskName}
               />
             </PopoverContent>
           </Popover>
