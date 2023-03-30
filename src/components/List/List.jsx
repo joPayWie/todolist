@@ -4,9 +4,10 @@ import { Task } from "../Task/Task";
 
 import { Flex } from "@chakra-ui/react";
 
-export const List = ({ tasks, deleteTask, setTasks }) => {
+export const List = ({ tasks, deleteTask, setTasks, setAlert }) => {
 
   const changeTaskStatus = (id) => {
+    setAlert(false)    
     let changedArray = tasks.map((task) => {
       if (task.id === id) {
         return { ...task, taskStatus: !task.taskStatus };
@@ -17,6 +18,17 @@ export const List = ({ tasks, deleteTask, setTasks }) => {
     setLocalStorage("tasks", changedArray);
   };
 
+  const editTaskName = (id, value) => {
+    let changedArray = tasks.map((task) => {
+      if (task.id === id) {
+        return { ...task, taskName: value };
+      }
+      return task;
+    });
+    setTasks(changedArray);
+    setLocalStorage("tasks", changedArray);
+  }
+
   return (
     <Flex
       bgImage="url('/notebook.jpg')"
@@ -25,7 +37,7 @@ export const List = ({ tasks, deleteTask, setTasks }) => {
       w="100%"
       color="black"
       borderRadius="10px"
-      p={{ base: "3%", lg: "2%" }}
+      p='2%'
       pt={{ base: "0px", lg: "0px" }}
       justify="center"
       direction="column"
@@ -46,6 +58,8 @@ export const List = ({ tasks, deleteTask, setTasks }) => {
             taskId={task.id}
             deleteTask={deleteTask}
             changeTaskStatus={changeTaskStatus}
+            editTaskName={editTaskName}
+            setAlert={setAlert}
           />
         ))
       )}
