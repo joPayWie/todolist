@@ -4,9 +4,10 @@ import { Task } from "../Task/Task";
 
 import { Flex } from "@chakra-ui/react";
 
-export const List = ({ tasks, deleteTask, setTasks }) => {
+export const List = ({ tasks, deleteTask, setTasks, setAlert }) => {
 
   const changeTaskStatus = (id) => {
+    setAlert(false)    
     let changedArray = tasks.map((task) => {
       if (task.id === id) {
         return { ...task, taskStatus: !task.taskStatus };
@@ -58,6 +59,7 @@ export const List = ({ tasks, deleteTask, setTasks }) => {
             deleteTask={deleteTask}
             changeTaskStatus={changeTaskStatus}
             editTaskName={editTaskName}
+            setAlert={setAlert}
           />
         ))
       )}

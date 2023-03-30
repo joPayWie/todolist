@@ -2,27 +2,36 @@ import { useState } from "react";
 
 import { filterTasks } from "../../utilities/generalFunctions";
 
-import { Flex, Input, Select, Button } from "@chakra-ui/react";
+import {
+  Flex,
+  Input,
+  Select,
+  Button,
+  Alert,
+  AlertIcon,
+  AlertTitle,
+  AlertDescription
+} from "@chakra-ui/react";
 import { FcTodoList } from "react-icons/fc";
 
-export const Header = ({ addNewTask, setTasks }) => {
+export const Header = ({ addNewTask, setTasks, alert }) => {
   const [newTask, setNewTask] = useState("");
-  const [selectValue, setSelectValue] = useState("")
+  const [selectValue, setSelectValue] = useState("");
 
   const handleSubmit = (e) => {
     e.preventDefault();
     addNewTask(newTask);
-    setNewTask("")
+    setNewTask("");
   };
 
   const handleChange = (value) => {
-    setSelectValue(value)
-    setTasks(filterTasks(value))
-  }
+    setSelectValue(value);
+    setTasks(filterTasks(value));
+  };
 
   return (
-    <Flex direction="column" gap="20px" alignItems="center" mb='2%'>
-      <Flex gap="10px" align="center" mb='3%'>
+    <Flex direction="column" gap="20px" alignItems="center" mb="2%">
+      <Flex gap="10px" align="center" mb="3%">
         <FcTodoList
           style={{
             fontSize: "3rem",
@@ -31,28 +40,50 @@ export const Header = ({ addNewTask, setTasks }) => {
             padding: "2px",
           }}
         />
-        <h1 className='text-[5rem] leading-4 text-[#C2C6DF]'>myToDoList</h1>
+        <h1 className="text-[5rem] leading-4 text-[#C2C6DF]">myToDoList</h1>
       </Flex>
       <Flex gap="10px">
         <form onSubmit={handleSubmit} autoComplete="off">
-          <Flex gap="10px" align="center" mb="20px">
-            <Input
-              type="text"
-              placeholder="Enter a new task"
-              value={newTask}
-              name="newTask"
-              id="newTask"
-              bg="white"
-              color="#6C65C2"
-              size="lg"
-              maxLength='25'
-              onChange={(e) => setNewTask(e.target.value)}
-            />
-            <Button type="submit" colorScheme='purple' bg="#872bc5" color="white">
-              Add task
-            </Button>
-          </Flex>
           <Flex direction="column">
+            <Flex gap="10px" align="center" mb="20px">
+              <Input
+                type="text"
+                placeholder="Enter a new task"
+                value={newTask}
+                name="newTask"
+                id="newTask"
+                bg="white"
+                color="#6C65C2"
+                size="lg"
+                maxLength="25"
+                onChange={(e) => setNewTask(e.target.value)}
+              />
+              <Button
+                type="submit"
+                colorScheme="purple"
+                bg="#872bc5"
+                color="white"
+              >
+                Add task
+              </Button>
+            </Flex>
+
+            {alert && (
+              <Alert
+                status="error"
+                color="black"
+                borderRadius="md"
+                fontSize="xs"
+                p='2'
+              >
+                <AlertIcon />
+                <AlertDescription>
+                  You entered an empty task. Please write something.
+                </AlertDescription>
+              </Alert>
+            )}
+          </Flex>
+          <Flex direction="column" mt={alert && '10px'}>
             <label htmlFor="filterStatus" style={{ alignSelf: "start" }}>
               Filter tasks
             </label>

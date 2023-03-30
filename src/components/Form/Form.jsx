@@ -2,39 +2,42 @@ import { useState } from "react";
 
 import { Stack, ButtonGroup, Button } from "@chakra-ui/react";
 
-export const Form = ({
-  onCancel,
-  taskName,
-  taskId,
-  editTaskName,
-}) => {
+export const Form = ({ onCancel, taskName, taskId, editTaskName }) => {
   const [nameInput, setNameInput] = useState(taskName);
 
   return (
-    <Stack spacing={2}>
-        <label htmlFor="task-name" style={{ fontWeight: 'bold' }}>Task name</label>
+    <form
+      autoComplete="off"
+      onSubmit={(e) => {
+        e.preventDefault();
+        editTaskName(taskId, nameInput);
+        onCancel();
+      }}
+    >
+      <Stack spacing={3}>
+        <label htmlFor="task-name" style={{ fontWeight: "bold" }}>
+          Edit task name
+        </label>
         <input
           type="text"
-          label="Task name"
           id="task-name"
-          style={{ border: "#6C65C2 solid 1px", borderRadius: "5px" }}
+          style={{
+            padding: "3px",
+            border: "#6C65C2 solid 1px",
+            borderRadius: "5px",
+          }}
           value={nameInput}
           onChange={(e) => setNameInput(e.target.value)}
         />
         <ButtonGroup display="flex" justifyContent="flex-end">
-          <Button variant="outline" onClick={onCancel}>
+          <Button colorScheme='red' onClick={onCancel}>
             Cancel
           </Button>
-          <Button
-            colorScheme="blue"
-            onClick={() => {
-              editTaskName(taskId, nameInput);
-              onCancel();
-            }}
-          >
+          <Button type="submit" colorScheme="blue">
             Save
           </Button>
         </ButtonGroup>
-    </Stack>
+      </Stack>
+    </form>
   );
 };

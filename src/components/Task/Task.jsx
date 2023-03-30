@@ -28,7 +28,8 @@ export const Task = ({
   taskId,
   deleteTask,
   changeTaskStatus,
-  editTaskName
+  editTaskName,
+  setAlert
 }) => {
   const { isOpen, onOpen, onClose } = useDisclosure();
 
@@ -52,7 +53,7 @@ export const Task = ({
           <IconButton
             colorScheme={taskStatus ? "blackAlpha" : "green"}
             size="sm"
-            aria-label="Check"
+            aria-label="Check task"
             icon={<CheckIcon />}
             onClick={() => changeTaskStatus(taskId)}
           />
@@ -61,7 +62,7 @@ export const Task = ({
             isOpen={isOpenEditPopover}
             onOpen={onOpenEditPopover}
             onClose={onCloseEditPopover}
-            placement="right"
+            placement="bottom"
             closeOnBlur={false}
           >
             <PopoverTrigger>
@@ -70,6 +71,7 @@ export const Task = ({
                 size="sm"
                 aria-label="Edit"
                 icon={<EditIcon />}
+                onClick={() => setAlert(false)}
               />
             </PopoverTrigger>
             <PopoverContent p={5}>
@@ -89,7 +91,8 @@ export const Task = ({
             size="sm"
             aria-label="Delete"
             icon={<DeleteIcon />}
-            onClick={onOpen}
+            onClick={() => { onOpen()
+            setAlert(false)}}
           />
         </Flex>
       </Flex>

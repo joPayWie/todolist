@@ -12,9 +12,14 @@ import "./App.css";
 
 function App() {
   const [tasks, setTasks] = useState(getLocalStorage("tasks") || []);
+  const [alert, setAlert] = useState(false);
 
   const addNewTask = (newTask) => {
+    if (newTask === "") {
+      setAlert(true)
+    }
     if (newTask !== "") {
+      setAlert(false)
       const newTaskArray = [
         ...tasks,
         { id: self.crypto.randomUUID(), taskName: newTask, taskStatus: false },
@@ -35,8 +40,8 @@ function App() {
     <div className="App">
       <VStack spacing='15%'>
         <Flex h="90%" direction="column" align="center" p="3%">
-          <Header addNewTask={addNewTask} setTasks={setTasks} />
-          <List tasks={tasks} deleteTask={deleteTask} setTasks={setTasks} />
+          <Header addNewTask={addNewTask} setTasks={setTasks} alert={alert} setAlert={setAlert} />
+          <List tasks={tasks} deleteTask={deleteTask} setTasks={setTasks} setAlert={setAlert} />
         </Flex>
         <Footer />
       </VStack>
