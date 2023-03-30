@@ -14,7 +14,7 @@ import {
 } from "@chakra-ui/react";
 import { FcTodoList } from "react-icons/fc";
 
-export const Header = ({ addNewTask, setTasks, alert }) => {
+export const Header = ({ addNewTask, setTasks, alert, setAlert }) => {
   const [newTask, setNewTask] = useState("");
   const [selectValue, setSelectValue] = useState("");
 
@@ -26,6 +26,7 @@ export const Header = ({ addNewTask, setTasks, alert }) => {
 
   const handleChange = (value) => {
     setSelectValue(value);
+    setAlert(false);
     setTasks(filterTasks(value));
   };
 
