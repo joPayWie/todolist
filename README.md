@@ -22,7 +22,7 @@ You can check those tasks that you completed, and use the filter to select what 
 You can edit or delete the tasks on your list. 
 
 ## Build entirely with:
-- React
+- React with [Vite](https://vitejs.dev/guide/)
 - [Tailwind](https://tailwindcss.com/docs/installation)
 - [Chakra](https://chakra-ui.com/)
 
