@@ -43,7 +43,7 @@ export const Task = ({
     <>
       <Flex w="100%" justify="space-between" align="center" p="1%">
         <span
-          className={`text-xl font-bold ${
+          className={`text-lg md:text-xl font-bold ${
             taskName.length > 16 && `w-2/3 text-left`
           } ${!taskStatus || `line-through text-slate-600`}`}
         >

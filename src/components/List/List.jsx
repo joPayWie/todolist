@@ -45,7 +45,7 @@ export const List = ({ tasks, deleteTask, setTasks, setAlert }) => {
     >
       <h1 className="text-6xl mb-2">Tasks:</h1>
       {tasks.length === 0 ? (
-        <h2 className="text-xl font-bold max-w-fit text-slate-600">
+        <h2 className="text-xl font-bold max-w-fit text-slate-600 italic p-0.5">
           Oops! It seems that there are no tasks yet.<br></br> Please add a
           task or change the filter.
         </h2>
