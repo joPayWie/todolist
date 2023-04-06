@@ -21,13 +21,13 @@ import {
 } from "@chakra-ui/react";
 import { FcTodoList } from "react-icons/fc";
 
-export const Header = ({ addNewTask, setTasks, alert, setAlert }) => {
+export const Header = ({ addNewTask, setTasks, alert, setAlert, selectValue, setSelectValue }) => {
   const [userName, setUserName] = useState(getLocalStorage("userName") || "");
   const { isOpen, onClose } = useDisclosure(
     userName === "" && { defaultIsOpen: true }
   );
   const [newTask, setNewTask] = useState("");
-  const [selectValue, setSelectValue] = useState("");
+
 
   const handleUserNameSubmit = (e) => {
     e.preventDefault();

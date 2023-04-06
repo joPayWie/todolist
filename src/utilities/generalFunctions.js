@@ -1,14 +1,13 @@
 import { getLocalStorage } from "./LocalStorage"
 
-export const filterTasks = (selectValue) => {
-    let taskArray = getLocalStorage('tasks')
+export const filterTasks = (selectValue, array = getLocalStorage('tasks')) => {
     if (selectValue === '' || selectValue === 'all') {
-        return taskArray
+        return array
     }
     if (selectValue === 'complete') {
-        return taskArray.filter(task => task.taskStatus === true)
+        return array.filter(task => task.taskStatus === true)
     }
     if (selectValue === 'pending') {
-        return taskArray.filter(task => task.taskStatus === false)
+        return array.filter(task => task.taskStatus === false)
     }
 }

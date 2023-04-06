@@ -1,31 +1,32 @@
-import { setLocalStorage } from "../../utilities/LocalStorage"
+import { getLocalStorage, setLocalStorage } from "../../utilities/LocalStorage"
+import { filterTasks } from "../../utilities/generalFunctions";
 
 import { Task } from "../Task/Task";
 
 import { Flex } from "@chakra-ui/react";
 
-export const List = ({ tasks, deleteTask, setTasks, setAlert }) => {
+export const List = ({ tasks, deleteTask, setTasks, setAlert, selectValue }) => {
 
   const changeTaskStatus = (id) => {
     setAlert(false)    
-    let changedArray = tasks.map((task) => {
+    let changedArray = getLocalStorage('tasks').map((task) => {
       if (task.id === id) {
         return { ...task, taskStatus: !task.taskStatus };
       }
       return task;
     });
-    setTasks(changedArray);
+    setTasks(filterTasks(selectValue, changedArray));
     setLocalStorage("tasks", changedArray);
   };
 
   const editTaskName = (id, value) => {
-    let changedArray = tasks.map((task) => {
+    let changedArray = getLocalStorage('tasks').map((task) => {
       if (task.id === id) {
         return { ...task, taskName: value };
       }
       return task;
     });
-    setTasks(changedArray);
+    setTasks(filterTasks(selectValue, changedArray));
     setLocalStorage("tasks", changedArray);
   }
 
