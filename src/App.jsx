@@ -1,6 +1,8 @@
 import { useState } from "react";
 import { setLocalStorage, getLocalStorage } from "./utilities/LocalStorage";
 
+import { filterTasks } from "./utilities/generalFunctions";
+
 import { Header } from "./components/Header/Header";
 import { List } from "./components/List/List";
 import { Footer } from "./components/Footer/Footer";
@@ -15,15 +17,17 @@ function App() {
   const [selectValue, setSelectValue] = useState("");
 
   const addNewTask = (newTask) => {
+    const currentTaskArray = getLocalStorage('tasks')
     if (newTask === "") {
       setAlert(true);
     }
     if (newTask !== "") {
       setAlert(false);
       const newTaskArray = [
-        ...tasks,
+        ...currentTaskArray,
         { id: self.crypto.randomUUID(), taskName: newTask, taskStatus: false },
       ];
+      setSelectValue('all')
       setTasks(newTaskArray);
       setLocalStorage("tasks", newTaskArray);
     }
@@ -32,7 +36,7 @@ function App() {
   const deleteTask = (id) => {
     const currentTaskArray = getLocalStorage("tasks");
     const filteredTaskArray = currentTaskArray.filter((task) => task.id !== id);
-    setTasks(filteredTaskArray);
+    setTasks(filterTasks(selectValue, filteredTaskArray));
     setLocalStorage("tasks", filteredTaskArray);
   };
 
