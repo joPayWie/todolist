@@ -21,7 +21,17 @@ function App() {
     if (newTask === "") {
       setAlert(true);
     }
-    if (newTask !== "") {
+    if (newTask !== "" && !currentTaskArray) {
+      setAlert(false);
+      const newTaskArray = [
+        ...tasks,
+        { id: self.crypto.randomUUID(), taskName: newTask, taskStatus: false },
+      ];
+      setSelectValue('all')
+      setTasks(newTaskArray);
+      setLocalStorage("tasks", newTaskArray);
+    }
+    if (newTask !== "" && currentTaskArray) {
       setAlert(false);
       const newTaskArray = [
         ...currentTaskArray,
