@@ -21,19 +21,25 @@ import {
 } from "@chakra-ui/react";
 import { FcTodoList } from "react-icons/fc";
 
-export const Header = ({ addNewTask, setTasks, alert, setAlert, selectValue, setSelectValue }) => {
+export const Header = ({
+  addNewTask,
+  setTasks,
+  alert,
+  setAlert,
+  selectValue,
+  setSelectValue,
+}) => {
   const [userName, setUserName] = useState(getLocalStorage("userName") || "");
   const { isOpen, onClose } = useDisclosure(
     userName === "" && { defaultIsOpen: true }
   );
   const [newTask, setNewTask] = useState("");
 
-
   const handleUserNameSubmit = (e) => {
     e.preventDefault();
     setLocalStorage("userName", userName);
     onClose();
-  }
+  };
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -62,7 +68,11 @@ export const Header = ({ addNewTask, setTasks, alert, setAlert, selectValue, set
           <h1 className="text-[5rem] leading-4 text-[#C2C6DF]">myToDoList</h1>
         </Flex>
         <h2 className="text-[1.75rem] md:text-[2rem] leading-4 text-[#6b4eca] mb-3 italic self-end">
-          Hello, <span className='text-white font-bold underline decoration-[#9892e2] not-italic decoration-double decoration-1'>{userName}</span> !
+          Hello,{" "}
+          <span className="text-white font-bold underline decoration-[#9892e2] not-italic decoration-double decoration-1">
+            {userName}
+          </span>{" "}
+          !
         </h2>
 
         <Flex gap="10px">
@@ -77,7 +87,7 @@ export const Header = ({ addNewTask, setTasks, alert, setAlert, selectValue, set
                   id="newTask"
                   bg="white"
                   color="#6C65C2"
-                  focusBorderColor='#6C65C2'
+                  focusBorderColor="#6C65C2"
                   size="lg"
                   maxLength="25"
                   onChange={(e) => setNewTask(e.target.value)}
@@ -112,12 +122,11 @@ export const Header = ({ addNewTask, setTasks, alert, setAlert, selectValue, set
                 Filter tasks
               </label>
               <Select
-                placeholder="Select an option"
                 id="filterStatus"
                 name="filterStatus"
                 bg="white"
                 color="#6C65C2"
-                focusBorderColor='#6C65C2'
+                focusBorderColor="#6C65C2"
                 fontWeight="bold"
                 size="lg"
                 value={selectValue}
@@ -149,7 +158,7 @@ export const Header = ({ addNewTask, setTasks, alert, setAlert, selectValue, set
                   id="userName"
                   bg="white"
                   color="#6C65C2"
-                  focusBorderColor='#6C65C2'
+                  focusBorderColor="#6C65C2"
                   size="lg"
                   maxLength="25"
                   onChange={(e) => setUserName(e.target.value)}
@@ -158,9 +167,7 @@ export const Header = ({ addNewTask, setTasks, alert, setAlert, selectValue, set
               </AlertDialogBody>
 
               <AlertDialogFooter>
-                <Button
-                type='submit'
-                colorScheme="purple">
+                <Button type="submit" colorScheme="purple">
                   Confirm
                 </Button>
               </AlertDialogFooter>
