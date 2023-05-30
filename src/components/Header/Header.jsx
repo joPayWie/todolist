@@ -89,7 +89,6 @@ export const Header = ({
                   color="#6C65C2"
                   focusBorderColor="#6C65C2"
                   size="lg"
-                  maxLength="25"
                   onChange={(e) => setNewTask(e.target.value)}
                 />
                 <Button
